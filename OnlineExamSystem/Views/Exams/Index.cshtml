@@ -1,0 +1,24 @@
+﻿@using global::OnlineExamSystem.Models
+@model IEnumerable<Exam>
+
+@{
+    ViewData["Title"] = "Available Exams";
+}
+
+<h1>Available Exams</h1>
+
+<div class="row">
+    @foreach (var exam in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@exam.Title</h5>
+                    <p class="card-text">@exam.Description</p>
+                    <a asp-action="Take" asp-route-id="@exam.ExamId"
+                       class="btn btn-primary">Take Exam</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

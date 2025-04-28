@@ -1,0 +1,37 @@
+﻿@using global::OnlineExamSystem.Models
+@model IEnumerable<Exam>
+
+@{
+    ViewData["Title"] = "Manage Exams";
+    Layout = "_Layout";
+}
+
+<h1>Exams</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.CreatedDate.ToString("d")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ExamId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ExamId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ExamId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Create New</a>

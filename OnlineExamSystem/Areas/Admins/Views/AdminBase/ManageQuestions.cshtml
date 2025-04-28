@@ -1,0 +1,40 @@
+﻿@using global::OnlineExamSystem.Models
+ @model IEnumerable<Question>
+
+@{
+    ViewData["Title"] = "إدارة الأسئلة";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<a href="@Url.Action("CreateQuestion", "Admin", new { examId = ViewData["ExamId"] })" class="btn btn-success">إضافة سؤال جديد</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>السؤال</th>
+            <th>الخيارات</th>
+            <th>الإجراء</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.Text</td>
+                <td>
+                    <ul>
+                        <li>@question.Option1</li>
+                        <li>@question.Option2</li>
+                        <li>@question.Option3</li>
+                        <li>@question.Option4</li>
+                    </ul>
+                </td>
+                <td>
+                    <a href="@Url.Action("EditQuestion", "Admin", new { id = question.QuestionId })" class="btn btn-warning">تعديل</a>
+                    <a href="@Url.Action("DeleteQuestion", "Admin", new { id = question.QuestionId })" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

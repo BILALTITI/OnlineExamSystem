@@ -1,0 +1,198 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\areas\\admins\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:areas\\admins\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\models\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:models\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\views\\exams\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:views\\exams\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\controllers\\examscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:controllers\\examscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\areas\\admins\\controllers\\adminbasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:areas\\admins\\controllers\\adminbasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\areas\\admins\\views\\adminbase\\index2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:areas\\admins\\views\\adminbase\\index2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|c:\\users\\0ol\\onedrive\\bureaublad\\task\\onlineexamsystem\\views\\home\\studenthome.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F0C9563E-EA2C-451A-87F6-BC05ADB002E8}|OnlineExamSystem.csproj|solutionrelative:views\\home\\studenthome.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Models\\SeedData.cs",
+              "RelativeDocumentMoniker": "Models\\SeedData.cs",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Models\\SeedData.cs",
+              "RelativeToolTip": "Models\\SeedData.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADYAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T14:58:58.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\QuestionController.cs",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Controllers\\QuestionController.cs",
+              "RelativeToolTip": "Controllers\\QuestionController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAgwAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T14:36:36.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Views\\Exams\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Exams\\Index.cshtml",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Views\\Exams\\Index.cshtml",
+              "RelativeToolTip": "Views\\Exams\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-28T14:29:10.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ExamsController.cs",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Controllers\\ExamsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ExamsController.cs",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Controllers\\ExamsController.cs",
+              "RelativeToolTip": "Controllers\\ExamsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T14:29:00.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAwwE4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T14:23:50.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T14:15:01.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StudentHome.cshtml",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Views\\Home\\StudentHome.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\StudentHome.cshtml",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Views\\Home\\StudentHome.cshtml",
+              "RelativeToolTip": "Views\\Home\\StudentHome.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-28T14:02:35.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index2.cshtml",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Areas\\Admins\\Views\\AdminBase\\Index2.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admins\\Views\\AdminBase\\Index2.cshtml",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Areas\\Admins\\Views\\AdminBase\\Index2.cshtml",
+              "RelativeToolTip": "Areas\\Admins\\Views\\AdminBase\\Index2.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-28T14:01:50.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminBaseController.cs",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Areas\\Admins\\Controllers\\AdminBaseController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admins\\Controllers\\AdminBaseController.cs",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Areas\\Admins\\Controllers\\AdminBaseController.cs",
+              "RelativeToolTip": "Areas\\Admins\\Controllers\\AdminBaseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T13:59:55.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Areas\\Admins\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admins\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\Areas\\Admins\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Areas\\Admins\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAiwDgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T13:59:24.514Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
