@@ -1,90 +1,119 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+ using OnlineExamSystem.Models;
 using OnlineExamSystem.Models.interfaces;
-using OnlineExamSystem.Models.Repositroy;
+ using OnlineExamSystem.Models.ViewModel;
 
 namespace OnlineExamSystem.Controllers
 {
-    [Authorize]
+    [Route("Exams")]
     public class ExamsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IExam _examRepository;
-        private readonly IQuestion _questionRepository;
-        private readonly IUserExamResult _userExamResultRepository;
+        private readonly IExam _ExamRepoistory;
+        private readonly IQuestion _QuestionRepoistory;
 
-        public ExamsController(IExam examRepository, IQuestion questionRepository, IUserExamResult userExamResultRepository)
-        {
-            _examRepository = examRepository;
-            _questionRepository = questionRepository;
-            _userExamResultRepository = userExamResultRepository;
-        }
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Exams.ToListAsync());
-        }
 
-        public async Task<IActionResult> Take(int id)
+        public ExamsController(IExam ExamRepoistory,IQuestion  QuestionRepoistory)
         {
-            var exam = await _context.Exams
-                .Include(e => e.Questions)
-                .FirstOrDefaultAsync(e => e.ExamId == id);
+            _ExamRepoistory = ExamRepoistory;
+            _QuestionRepoistory = QuestionRepoistory;
+        }
+        [HttpPost("Submit")]
+
+        public async Task<IActionResult> Submit(ExamAttemptViewModel model)
+        {
+            var exam = await _ExamRepoistory.GetExamWithQuestionsAsync(model.ExamId);
+
+            if (exam == null)
+            {
+                return NotFound("Exam not found");
+            }
+             var parsedAnswers = new Dictionary<int, int>();
+            foreach (var answer in model.Answers)
+            {
+                if (int.TryParse(answer.Value, out int parsedValue))
+                {
+                    parsedAnswers[answer.Key] = parsedValue;
+                }
+            }
+
+            var result = new ExamResultViewModel
+            {
+                Exam = exam,
+                TotalQuestions = exam.Questions.Count,
+                UserAnswers = parsedAnswers,
+                CorrectAnswersDict = exam.Questions.ToDictionary(q => q.QuestionId, q => q.CorrectAnswer)
+            };
+
+            // Calculate correct answers
+            result.CorrectAnswers = result.CorrectAnswersDict.Count(kv =>
+                parsedAnswers.TryGetValue(kv.Key, out var userAnswer) &&
+                userAnswer == kv.Value
+            );
+
+            // Calculate percentage
+            result.ScorePercentage = result.TotalQuestions > 0
+                ? Math.Round((double)result.CorrectAnswers / result.TotalQuestions * 100, 2)
+                : 0;
+
+            // Determine pass/fail
+            result.IsPassed = result.ScorePercentage >= 60;
+
+            return View("Results", result);
+        }
+        [HttpGet("StartExam")]
+        public async Task<IActionResult> StartExam(int id)
+        {
+            var exam = await _ExamRepoistory.GetExamWithQuestionsAsync(id);
 
             if (exam == null)
             {
                 return NotFound();
             }
 
-            return View(exam);
-        }
-        
-          
+            var viewModel = new ExamAttemptViewModel
+            {
+                ExamId = exam.ExamId,
+                ExamTitle = exam.Title,
+                ExamDescription = exam.Description,
+                Questions = exam.Questions?.ToList() ?? new List<Question>(),
+                AttemptId = Guid.NewGuid()
+            };
 
-            //[HttpPost]
-            //public Task  <IActionResult> SubmitExam(int examId, Dictionary<int, int> answers)
-            //{
-            //    var questions = _questionRepository.GetByIdAsync(examId);
-            //    int correctAnswers = 0;
+            return View(viewModel);
+         }
+         [HttpGet("Index")]
+        [Authorize]  
+        public async Task<IActionResult> Index()
+        {
+            var exams = await _ExamRepoistory.GetAllAsync();
+            return PartialView(exams);   
+        }
 
          
-            //    // حساب الإجابات الصحيحة
-            //    foreach (var question in questions)
-            //    {
-            //        if (answers.TryGetValue(question.Id, out int answer) && answer == question.CorrectAnswer)
-            //        {
-            //            correctAnswers++;
-            //        }
-            //    }
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Exam exam)
+        {
+            await _ExamRepoistory.AddAsync(exam);
+            return Ok();
+        }
 
-            //    // حساب النتيجة النهائية
-            //    double totalQuestions = questions.Count;
-            //    double score = (correctAnswers / totalQuestions) * 100;
-            //    string passFailStatus = score >= 60 ? "ناجح" : "راسب";
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Exam exam)
+        {
+            if (id != exam.ExamId)
+                return BadRequest();
 
-            //    // حفظ النتيجة في قاعدة البيانات
-            //    var userExamResult = new StudentExam
-            //    {
-            //        ExamId = examId,
-            //         Score = score,
-            //        PassFailStatus = passFailStatus
-            //    };
+            await _ExamRepoistory.UpdateAsync(exam);
+            return Ok();
+        }
+      
 
-            //    _userExamResultRepository.AddAsync(userExamResult);
-
-            //    // إرسال النتيجة إلى الواجهة
-            //    var resultViewModel = new ResultViewModel
-            //    {
-            //        Score = score,
-            //        TotalQuestions = (int)totalQuestions,
-            //        CorrectAnswers = correctAnswers,
-            //        IncorrectAnswers = (int)(totalQuestions - correctAnswers),
-            //        PassFailStatus = passFailStatus
-            //    };
-
-            //    return View("Result", resultViewModel);
-            //}
-        //}
-
+         [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _ExamRepoistory.DeleteAsync(id);
+            return Ok();
+        }
     }
 }

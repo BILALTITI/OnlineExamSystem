@@ -1,5 +1,4 @@
-﻿// Models/UserExamResult.cs
-using OnlineExamSystem.Models;
+﻿using OnlineExamSystem.Models;
 using OnlineExamSystem.Models.interfaces;
 
 public class StudentExam  

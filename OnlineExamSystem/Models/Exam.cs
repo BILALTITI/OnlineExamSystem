@@ -8,14 +8,14 @@ namespace OnlineExamSystem.Models
         public int ExamId { get; set; }
 
         [Required]
-        [StringLength(100)]
+         
         public string Title { get; set; }
 
-        [DataType(DataType.MultilineText)]
+         
         public string Description { get; set; }
 
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
-        public List<Question> Questions { get; set; } = new();
+        public List<Question>? Questions { get; set; } = new();
     }
 }

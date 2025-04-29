@@ -14,8 +14,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
     }
-    // Modified constructor
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
     }

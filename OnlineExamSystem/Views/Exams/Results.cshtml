@@ -1,0 +1,102 @@
+﻿@using OnlineExamSystem.Models
+@using OnlineExamSystem.Models.ViewModel
+@model ExamResultViewModel
+ 
+
+@{
+    ViewData["Title"] = "Exam Result";
+    Layout = "_StudentLayout";
+    int questionNumber = 0;
+}
+
+<div class="container py-4">
+    <h2 class="mb-4">Exam Results for: @Model.Exam.Title</h2>
+
+    <div class="mb-3">
+        <p><strong>Total Questions:</strong> @Model.TotalQuestions</p>
+        <p><strong>Correct Answers:</strong> @Model.CorrectAnswers</p>
+        <p><strong>Score Percentage:</strong> @Model.ScorePercentage%</p>
+        <p><strong>Result:</strong> <span class="fw-bold @(Model.IsPassed ? "text-success" : "text-danger")">@(Model.IsPassed ? "Passed" : "Failed")</span></p>
+    </div>
+
+    @foreach (var question in Model.Exam.Questions)
+    {
+        questionNumber++;
+        var questionId = question.QuestionId;
+
+        Model.UserAnswers.TryGetValue(questionId, out int userAnswer);
+        Model.CorrectAnswersDict.TryGetValue(questionId, out int correctAnswer);
+
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5>Question @questionNumber</h5>
+            </div>
+            <div class="card-body">
+                <p class="fs-5">@question.Text</p>
+
+                <ul class="list-group">
+                    @for (int i = 1; i <= 4; i++)
+                    {
+                        string optionText = i switch
+                        {
+                            1 => question.Option1,
+                            2 => question.Option2,
+                            3 => question.Option3,
+                            4 => question.Option4,
+                            _ => ""
+                        };
+
+                        var isUserSelected = (i == userAnswer);
+                        var isCorrect = (i == correctAnswer);
+
+                        string cssClass = "list-group-item";
+
+                        if (isUserSelected && isCorrect)
+                        {
+                            cssClass += " list-group-item-success";
+                        }
+                        else if (isUserSelected && !isCorrect)
+                        {
+                            cssClass += " list-group-item-danger";
+                        }
+                        else if (isCorrect)
+                        {
+                            cssClass += " list-group-item-success";
+                        }
+
+                        <li class="@cssClass">
+                            @if (isUserSelected)
+                            {
+                                <strong>(Your Answer)</strong>
+                            }
+                            @optionText
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="Index" asp-controller="Question" class="btn btn-primary">
+            Back to Dashboard
+        </a>
+
+        <a asp-action="StartExam" asp-controller="Exams" asp-route-id="@Model.Exam.ExamId" class="btn btn-warning">
+            Retake Exam
+        </a>
+    </div>
+
+</div>
+@functions {
+    string GetOptionText(Question question, int optionNumber)
+    {
+        return optionNumber switch
+        {
+            1 => question.Option1,
+            2 => question.Option2,
+            3 => question.Option3,
+            4 => question.Option4,
+            _ => "Invalid option"
+        };
+    }
+}

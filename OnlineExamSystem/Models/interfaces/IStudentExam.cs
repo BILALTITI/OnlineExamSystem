@@ -1,5 +1,4 @@
-﻿// Interfaces/IUserExamResult.cs
-using OnlineExamSystem.Models;
+﻿ using OnlineExamSystem.Models;
 
 public interface IStudentExam
 {

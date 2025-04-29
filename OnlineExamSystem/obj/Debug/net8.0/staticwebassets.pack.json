@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\OnlineExamSystem.bundle.scp.css",
-      "PackagePath": "staticwebassets\\OnlineExamSystem.znne1mbakw.bundle.scp.css"
-    },
-    {
       "Id": "C:\\Users\\0ol\\OneDrive\\Bureaublad\\Task\\OnlineExamSystem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

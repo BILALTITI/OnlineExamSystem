@@ -1,0 +1,208 @@
+﻿@using OnlineExamSystem.Models
+@model Exam
+@{
+    ViewData["Title"] = Model?.ExamId == 0 ? "Create New Exam" : "Edit Exam";
+    Layout = "_AdminLayout";
+}
+
+<div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">@ViewData["Title"]</h3>
+    </div>
+    <div class="card-body">
+        <form method="post" class="needs-validation" novalidate>
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" asp-for="ExamId" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="form-label">Exam Title</label>
+                <input name="Title" asp-for="Title" class="form-control" required>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="form-label">Description</label>
+<textarea name="Description" asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <h4>Questions</h4>
+                <div id="questionsContainer">
+                    @if (Model?.Questions != null)
+                    {
+                        @for (int i = 0; i < Model.Questions.Count; i++)
+                        {
+                            <div class="question-section mb-3 p-3 border">
+                                <input type="hidden" asp-for="Questions[i].QuestionId" />
+                                <div class="form-group mb-3">
+                                    <label>Question Text</label>
+                                    <textarea asp-for="Questions[i].Text" class="form-control" required></textarea>
+                                    <span asp-validation-for="Questions[i].Text" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Option 1</label>
+                                            <input asp-for="Questions[i].Option1" class="form-control" required />
+                                            <span asp-validation-for="Questions[i].Option1" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Option 2</label>
+                                            <input asp-for="Questions[i].Option2" class="form-control" required />
+                                            <span asp-validation-for="Questions[i].Option2" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Option 3</label>
+                                            <input asp-for="Questions[i].Option3" class="form-control" required />
+                                            <span asp-validation-for="Questions[i].Option3" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Option 4</label>
+                                            <input asp-for="Questions[i].Option4" class="form-control" required />
+                                            <span asp-validation-for="Questions[i].Option4" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label>Correct Answer</label>
+                                    <select asp-for="Questions[i].CorrectAnswer" class="form-select" required>
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                    </select>
+                                    <span asp-validation-for="Questions[i].CorrectAnswer" class="text-danger"></span>
+                                </div>
+                                <button type="button" class="btn btn-danger btn-sm remove-question">Remove Question</button>
+                            </div>
+                        }
+                    }
+                </div>
+                <button type="button" id="addQuestion" class="btn btn-secondary">Add Question</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Exam</button>
+            <a href="@Url.Action("Index2", "AdminBase")" class="btn btn-secondary">Cancel</a>
+
+        </form>
+    </div>
+</div>
+
+<div id="questionTemplate" class="d-none">
+    <div class="question-section mb-3 p-3 border">
+        <div class="form-group mb-3">
+            <label>Question Text</label>
+            <textarea class="form-control" name="Questions[__index__].Text" required></textarea>
+            <span class="text-danger" data-valmsg-for="Questions[__index__].Text"></span>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label>Option 1</label>
+                    <input class="form-control" name="Questions[__index__].Option1" required />
+                    <span class="text-danger" data-valmsg-for="Questions[__index__].Option1"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label>Option 2</label>
+                    <input class="form-control" name="Questions[__index__].Option2" required />
+                    <span class="text-danger" data-valmsg-for="Questions[__index__].Option2"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label>Option 3</label>
+                    <input class="form-control" name="Questions[__index__].Option3" required />
+                    <span class="text-danger" data-valmsg-for="Questions[__index__].Option3"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label>Option 4</label>
+                    <input class="form-control" name="Questions[__index__].Option4" required />
+                    <span class="text-danger" data-valmsg-for="Questions[__index__].Option4"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Correct Answer</label>
+            <select class="form-select" name="Questions[__index__].CorrectAnswer" required>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                <option value="4">Option 4</option>
+            </select>
+            <span class="text-danger" data-valmsg-for="Questions[__index__].CorrectAnswer"></span>
+        </div>
+        <button type="button" class="btn btn-danger btn-sm remove-question">Remove Question</button>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const questionsContainer = document.getElementById('questionsContainer');
+            const addButton = document.getElementById('addQuestion');
+            const template = document.getElementById('questionTemplate').innerHTML;
+            let questionIndex = @(Model?.Questions?.Count ?? 0);
+
+            // Add new question
+            addButton.addEventListener('click', function () {
+                const newQuestion = template.replace(/__index__/g, questionIndex);
+                const div = document.createElement('div');
+                div.innerHTML = newQuestion;
+                questionsContainer.appendChild(div.firstElementChild);
+                questionIndex++;
+            });
+
+            // Remove question
+            questionsContainer.addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-question')) {
+                    e.target.closest('.question-section').remove();
+                    reindexQuestions();
+                }
+            });
+
+            // Reindex all questions
+            function reindexQuestions() {
+                const sections = questionsContainer.querySelectorAll('.question-section');
+                sections.forEach((section, index) => {
+                    // Update all input names
+                    section.querySelectorAll('input, textarea, select').forEach(element => {
+                        const name = element.name.replace(/\[\d+\]/g, `[${index}]`);
+                        element.name = name;
+                        element.id = name.replace(/\./g, '_');
+                    });
+
+                    // Update validation message fors
+                    section.querySelectorAll('[data-valmsg-for]').forEach(span => {
+                        const forAttr = span.getAttribute('data-valmsg-for')
+                                        .replace(/\[\d+\]/g, `[${index}]`);
+                        span.setAttribute('data-valmsg-for', forAttr);
+                    });
+                });
+                questionIndex = sections.length;
+            }
+        });
+    </script>
+}

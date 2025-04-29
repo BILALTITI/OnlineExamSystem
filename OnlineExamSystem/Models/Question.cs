@@ -26,7 +26,7 @@ namespace OnlineExamSystem.Models
             public int CorrectAnswer { get; set; }
 
             public int ExamId { get; set; }
-            public Exam Exam { get; set; }
+            public Exam ? Exam { get; set; }
         }
  
 }

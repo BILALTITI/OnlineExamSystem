@@ -4,6 +4,7 @@ namespace OnlineExamSystem.Models.interfaces
 {
     public interface IExam
     {
+          Task<Exam> GetExamWithQuestionsAsync(int examId);
 
         Task<IEnumerable<Exam>> GetAllAsync();
         Task<Exam> GetByIdAsync(int id);

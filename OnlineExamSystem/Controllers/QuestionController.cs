@@ -2,27 +2,39 @@
 using OnlineExamSystem.Models.Repositroy;
 using OnlineExamSystem.Models;
 using OnlineExamSystem.Models.interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using OnlineExamSystem.Models.ViewModel;
 
 namespace OnlineExamSystem.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class QuestionController : Controller
     {
         private readonly IQuestion _questionRepository;
+        private readonly IExam _ExamsRepository;
 
-        public QuestionController(IQuestion questionRepository)
+        public QuestionController(IQuestion questionRepository, IExam examsRepository)
         {
             _questionRepository = questionRepository;
+            _ExamsRepository = examsRepository;
         }
 
+        public async Task<IActionResult> Index()
+        {
+         var Exams=await _ExamsRepository.GetAllAsync();
+            return View(Exams);
+        }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Question>>> GetAllQuestions()
+        [HttpGet("GetAllQuestions")]
+        public async Task<IActionResult> GetAllQuestions()
         {
             var questions = await _questionRepository.GetAllAsync();
             return Ok(questions);
         }
-
-        // Get Question by Id
+        
+         
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> GetQuestionById(int id)
         {
@@ -34,8 +46,7 @@ namespace OnlineExamSystem.Controllers
             return Ok(question);
         }
 
-        // Create New Question
-        [HttpPost]
+                 [HttpPost]
         public async Task<ActionResult> CreateQuestion([FromBody] Question question)
         {
             if (!ModelState.IsValid)
@@ -45,7 +56,7 @@ namespace OnlineExamSystem.Controllers
             return CreatedAtAction(nameof(GetQuestionById), new { id = question.QuestionId }, question);
         }
 
-        // Update Question
+         
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateQuestion(int id, [FromBody] Question updatedQuestion)
         {
@@ -60,7 +71,7 @@ namespace OnlineExamSystem.Controllers
             return NoContent();
         }
 
-        // Delete Question
+         
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteQuestion(int id)
         {
@@ -72,19 +83,5 @@ namespace OnlineExamSystem.Controllers
             return NoContent();
         }
 
-        // ✅ Batch Insert (Insert Multiple Questions at Once)
-        [HttpPost("batch")]
-        public async Task<ActionResult> BatchInsertQuestions([FromBody] List<Question> questions)
-        {
-            if (questions == null || questions.Count == 0)
-                return BadRequest("No questions provided.");
-
-            foreach (var question in questions)
-            {
-                await _questionRepository.AddAsync(question);
             }
-
-            return Ok("Questions inserted successfully!");
-        }
-    }
 }

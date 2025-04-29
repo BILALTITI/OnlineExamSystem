@@ -1,0 +1,131 @@
+﻿@using OnlineExamSystem.Models.ViewModel
+@model ExamAttemptViewModel
+
+@{
+    ViewData["Title"] = $"{Model.ExamTitle} - Exam";
+    Layout = "_StudentLayout";
+    int questionNumber = 1;
+}
+
+<div class="container-lg py-4">
+    <div class="row g-4">
+        <!-- Exam Header -->
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="h2 text-primary">@Model.ExamTitle</h1>
+                    <p class="lead text-muted mb-0">@Model.ExamDescription</p>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-8">
+            @if (Model.Questions == null || !Model.Questions.Any())
+            {
+                <div class="alert alert-warning">
+                    No questions available for this exam.
+                </div>
+            }
+            else
+            {
+                <form id="examForm" asp-controller="Exams" asp-action="Submit" method="post">
+                    <input type="hidden" asp-for="ExamId" />
+
+                    @foreach (var question in Model.Questions)
+                    {
+                        <div class="card mb-4 question-card" data-question-id="@question.QuestionId">
+                            <div class="card-header bg-light">
+                                <h5 class="card-title mb-0">Question @questionNumber</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="fs-5">@question.Text</p>
+
+                                <div class="options-container">
+                                    @for (int i = 1; i <= 4; i++)
+                                    {
+                                        var optionValue = i;
+                                        var optionText = question.GetType().GetProperty($"Option{i}")?.GetValue(question)?.ToString();
+                                        if (!string.IsNullOrWhiteSpace(optionText))
+                                        {
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input"
+                                                       type="radio"
+                                                       name="answers[@question.QuestionId]"
+                                                       id="option-@question.QuestionId-@i"
+                                                       value="@i" />
+                                                <label class="form-check-label d-block fs-6" for="option-@question.QuestionId-@i">
+                                                    @optionText
+                                                </label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        questionNumber++;
+                    }
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-send-check-fill me-2"></i>Submit Exam
+                        </button>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* <script> *@
+    @*     let timeLeft = @Model.TimeLeft.TotalSeconds; *@
+    @*     const timerElement = document.getElementById('timeRemaining'); *@
+
+    @*     function updateTimer() { *@
+    @*         if (timeLeft <= 0) { *@
+    @*             document.getElementById('examForm'); *@
+    @*             return; *@
+    @*         } *@
+
+    @*         const hours = Math.floor(timeLeft / 3600); *@
+    @*         const minutes = Math.floor((timeLeft % 3600) / 60); *@
+    @*         const seconds = Math.floor(timeLeft % 60); *@
+
+    @*         timerElement.textContent = *@
+    @*             `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; *@
+
+    @*         timeLeft--; *@
+    @*         setTimeout(updateTimer, 1000); *@
+    @*     } *@
+
+    @*     updateTimer(); *@
+    @* </script> *@
+}
+
+<style>
+    .question-card {
+        transition: transform 0.2s ease;
+    }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+        }
+
+    .options-container .form-check {
+        padding: 0.75rem;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+    }
+
+        .options-container .form-check:hover {
+            background-color: rgba(13, 110, 253, 0.05);
+        }
+
+    .form-check-input:checked + .form-check-label {
+        font-weight: 500;
+        color: #0d6efd;
+    }
+</style>

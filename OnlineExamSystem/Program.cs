@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineExamSystem.Areas;
 using OnlineExamSystem.Models;
 using OnlineExamSystem.Models.interfaces;
 using OnlineExamSystem.Models.Repositroy;
@@ -18,20 +17,17 @@ namespace OnlineExamSystem
       .AddMvcOptions(options =>
           options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 
-            // DbContext
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Configure Identity
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Configure cookie settings
-            builder.Services.ConfigureApplicationCookie(options => {
+             builder.Services.ConfigureApplicationCookie(options => {
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                options.LoginPath = "/Admins/Account/Login"; // Login path for unauthenticated users
+                options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/Admins/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
@@ -41,19 +37,11 @@ namespace OnlineExamSystem
             builder.Services.AddScoped<IQuestion, QuestionRepositroy>();
             builder.Services.AddScoped<IUserExamResult, StudentExamRepository>();
 
-            // CORS Policy (if needed)
-            builder.Services.AddCors(corsOptions =>
-            {
-                corsOptions.AddPolicy("MyPolicy", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-            });
+          
 
             var app = builder.Build();
 
-            // Configure Middleware
-            if (!app.Environment.IsDevelopment())
+             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
@@ -61,29 +49,19 @@ namespace OnlineExamSystem
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Area Route (for Admins)
             app.MapControllerRoute(
-                name: "Areas",
+        name: "default",
+        pattern: "{controller=Account}/{action=Login}/{id?}");
+
+ 
+            app.MapControllers(); 
+            app.MapControllerRoute(
+                name: "areas",
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-            // Default Route (forces login page)
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Account}/{action=Login}/{id?}",
-                defaults: new { area = "Admins" });
-
-            // Seed data
-            using (var scope = app.Services.CreateScope())
-            {
-                await SeedData.Initialize(scope.ServiceProvider);
-            }
-
             app.Run();
         }
     }

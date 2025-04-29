@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineExamSystem.Models.interfaces;
+using OnlineExamSystem.Models.ViewModel;
 
 namespace OnlineExamSystem.Models.Repositroy
 {
@@ -11,6 +13,22 @@ namespace OnlineExamSystem.Models.Repositroy
         {
             _context = context;
         }
+
+        //public List<QuestionVM> GetAllQuestions()
+        //{
+        //    return _context.Questions
+        //        .Select(q => new QuestionVM
+        //        {
+        //            Id = q.QuestionId,
+        //            ExamId = q.ExamId,
+        //            Text = q.Text,
+        //            OptionA = q.Option1,
+        //            OptionB = q.Option2,
+        //            OptionC = q.Option3,
+        //            OptionD = q.Option4
+        //        })
+        //        .ToList();
+        //}
 
         public async Task<IEnumerable<Question>> GetAllAsync()
         {
