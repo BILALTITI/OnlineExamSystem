@@ -41,7 +41,22 @@ namespace OnlineExamSystem
 
             var app = builder.Build();
 
-             if (!app.Environment.IsDevelopment())
+
+            // Seed data during application startup
+            using (var scope = app.Services.CreateScope())
+            {
+                try
+                {
+                    await SeedData.Initialize(scope.ServiceProvider);
+                }
+                catch (Exception ex)
+                {
+                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred seeding the DB");
+                }
+            }
+
+            if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
@@ -62,6 +77,8 @@ namespace OnlineExamSystem
             app.MapControllerRoute(
                 name: "areas",
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+           
             app.Run();
         }
     }
